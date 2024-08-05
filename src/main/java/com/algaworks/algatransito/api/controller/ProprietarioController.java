@@ -19,7 +19,6 @@ public class ProprietarioController {
     
     @GetMapping
     public List<Proprietario> listar() {
-//        return proprietarioRepository.findByNomeContaining("Cristina");
         return proprietarioRepository.findAll();
     }
 
@@ -43,6 +42,16 @@ public class ProprietarioController {
         proprietario.setId(proprietarioId);
         Proprietario proprietarioAtualizado = proprietarioRepository.save(proprietario);
         return ResponseEntity.ok(proprietarioAtualizado);
+    }
 
+    @DeleteMapping("/{proprietarioId}")
+    public ResponseEntity<Void> deletar (@PathVariable Long proprietarioId) {
+        if (!proprietarioRepository.existsById(proprietarioId)) {
+            return ResponseEntity.notFound().build();
+
+        }
+
+        proprietarioRepository.deleteById(proprietarioId);
+        return ResponseEntity.noContent().build();
     }
 }
