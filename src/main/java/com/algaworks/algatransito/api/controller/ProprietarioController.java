@@ -33,4 +33,16 @@ public class ProprietarioController {
     public Proprietario adicionar (@RequestBody Proprietario proprietario)  {
         return proprietarioRepository.save(proprietario);
     }
+
+    @PutMapping("/{proprietarioId}")
+    public ResponseEntity<Proprietario> atualizar (@PathVariable Long proprietarioId, @RequestBody Proprietario proprietario) {
+        if (!proprietarioRepository.existsById(proprietarioId)) {
+            return ResponseEntity.notFound().build();
+        }
+
+        proprietario.setId(proprietarioId);
+        Proprietario proprietarioAtualizado = proprietarioRepository.save(proprietario);
+        return ResponseEntity.ok(proprietarioAtualizado);
+
+    }
 }
