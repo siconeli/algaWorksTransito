@@ -7,5 +7,4 @@ create table proprietario (
  primary key (id)
 );
 
-alter table proprietario
-add constraint uk_proprietario unique (email);
+alter table proprietario add constraint uk_proprietario unique (email);
