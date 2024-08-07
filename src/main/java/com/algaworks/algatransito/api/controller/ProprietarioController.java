@@ -60,7 +60,7 @@ public class ProprietarioController {
     }
 
     @ExceptionHandler(NegocioException.class)
-    public ResponseEntity<String> capturar (NegocioException error) {
+    public ResponseEntity<String> capturarExceptions (NegocioException error) {
         return ResponseEntity.badRequest().body(error.getMessage());
     }
 }
