@@ -36,8 +36,4 @@ public class VeiculoController {
         return veiculoService.cadastrar(veiculo);
     }
 
-    @ExceptionHandler(NegocioException.class)
-    public ResponseEntity<String> capturarException(NegocioException e) {
-        return ResponseEntity.badRequest().body(e.getMessage());
-    }
 }
